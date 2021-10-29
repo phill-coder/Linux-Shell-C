@@ -148,7 +148,7 @@ int takeInput(char* str)
 		return 1;
 	}
 }
-
+//move to directory given /etc
 void movetodir(const char* dirName){
 
 	DIR* dir = opendir(dirName);
@@ -162,7 +162,7 @@ void movetodir(const char* dirName){
 }
 
 
-
+//replay command in history
 void replay(char * num, char **parsed){
 	struct node* temp = find(atoi(num));
 	if (temp == NULL){
@@ -173,6 +173,8 @@ void replay(char * num, char **parsed){
 	ownCmdHandler(temp->command, temp->size);
 
 }
+
+//execute program waiting for them to end
 void start(char **parsed){
 	pid_t pid = fork();
 	int wait;
@@ -207,6 +209,8 @@ void start(char **parsed){
 		}
 
 }
+
+//execute program but does not wait for them to end
 int background(char **parsed, int repeat){
 	int fd[2];
 	int getID;
@@ -247,6 +251,8 @@ int background(char **parsed, int repeat){
 	}
 	return getID;
 }
+
+//runs background function x amount of times
 void repeat(char** parsed){
 	int pidList[100];
 	int repeat = atoi(parsed[1]);
@@ -259,6 +265,7 @@ void repeat(char** parsed){
 	}
 }
 
+//delete pid
 void dalek(char** parsed){
 	if(parsed[1] != NULL && atoi(parsed[1]) != 0){
 		if(kill(atoi(parsed[1]),SIGKILL)){
@@ -271,7 +278,7 @@ void dalek(char** parsed){
 	}
 
 }
-
+//save history
 void saveHistory(){
 	FILE *fpw;
 	char cwd[1024];
@@ -299,7 +306,7 @@ void saveHistory(){
 }
 
 
-// // Function to execute builtin commands
+//Function to execute builtin commands
 int ownCmdHandler(char** parsed, int size)
 {
 	int NoOfOwnCmds = 9 , i, switchOwnArg = 0;
@@ -348,7 +355,6 @@ int ownCmdHandler(char** parsed, int size)
 	case 4:
 		insertHistory(lengthHistory(),parsed, size);
 		printf("Current Directory: %s", currentdirectory);
-		//printDir();
 		return 1;
 	//replay
 	case 5:
@@ -372,6 +378,7 @@ int ownCmdHandler(char** parsed, int size)
 		insertHistory(lengthHistory(),parsed, size);
 		dalek(parsed);
 		return 1;
+	//repeat
 	case 9:
 		insertHistory(lengthHistory(),parsed, size);
 		repeat(parsed);
@@ -398,7 +405,7 @@ int parseSpace(char* str, char** parsed)
 			i--;
 	}
 }
-
+//run cmd given size and parsed string
 int processString(char* str, char** parsed)
 {
 
@@ -410,20 +417,22 @@ int processString(char* str, char** parsed)
   	printf("Not supported command");
 		return 0;
 }
+
+//load history
 void loadHistory(char **parsed){
-	/* Pointer to the file */
+
 	FILE *fp1;
 	char string[MAXCOM];
 	int amt =0;
 	char cwd[1024];
-	/* Opening a file in r mode*/
+
 	strcpy(cwd, currentdirectory);
 	strcat(cwd,"/history.txt");
 	fp1= fopen (cwd, "r");
 
 	char line[256];
 	int i = 0;
-	//fscanf(fp1,"%d",&amt);
+
 	while (fgets(line, sizeof(line), fp1)){
 			line[strcspn(line, "\n")] = 0;
 			int size = parseSpace(line, parsed);
@@ -437,12 +446,11 @@ void loadHistory(char **parsed){
 	return;
 }
 
-
+//set starting directory
 void setcwd(){
 	char cwd[1024];
 	getcwd(cwd, sizeof(cwd));
 	strcpy(currentdirectory,cwd);
-	//currentdirectory = cwd;
 }
 
 int main()
