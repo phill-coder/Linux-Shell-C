@@ -1,0 +1,1 @@
+To run xterm 4 times, input in shell "repeat 4 /usr/bin/xterm -bg green".
