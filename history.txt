@@ -1,0 +1,64 @@
+whereami 
+movetodir test 
+background dsads 
+background HelloWorld 
+background Hellosd 
+start TimedHello 
+start dsds 
+background TimedHello 
+background HelloWorld 
+background HelloWorld 
+background sd 
+start sdasd 
+background sdsads 
+background sdsa 
+background sdsa 
+start /usr/bin/xterm 
+start usr/bin/xterm 
+dalek 3829 
+dalek 3821 
+dalek 3813 
+dalek 3813 
+background /usr/bin/xterm 
+background /usr/bin/xterm 
+background /usr/bin/xterm 
+whereami 
+background TimedHello 
+background TimedHello 
+start /usr/bin/xterm -bg green 
+start /usr/bin/xterm -bg green 
+start HelloWorld 
+whereami 
+movetodir test 
+movetodir .. 
+whereami 
+history 
+movetodir /home/phillip/Documents/Shell 
+start HelloWorld 
+history 
+start /usr/bin/xterm -bg gree 
+start /usr/bin/xterm -bg green 
+start sds 
+start TimedHello 
+background HelloWorld 
+background dsad 
+background sdsd 
+background HelloWorld 
+background TimedHello 
+background 
+background /usr/bin/xterm 
+dalek 4129 
+repeat 3 /usr/bin/xterm 
+dalek 4139 
+dalek 4140 
+dalek 4141 
+repeat 3 /usr/bin/xterm -bg green 
+dalek 4165 
+dalek 4166 
+dalek 4167 
+history 
+background HelloWorld 
+background sdads 
+background /usr/bin/xterm 
+background HelloWorld 
+background sdasd 
